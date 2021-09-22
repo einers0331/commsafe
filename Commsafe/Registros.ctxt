@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Registros
+comment1.params=
+comment1.target=Registros()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Registro\r\n
+comment2.params=nombre\ apellido\ contrasena\ cedula\ celular\ direccion
+comment2.target=void\ registrarCiudadano(java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ int,\ java.lang.String)
+numComments=3

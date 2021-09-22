@@ -7,7 +7,7 @@
 */
 import java.util.ArrayList;
 
-public class Registro
+public class Registros
 {
     // instance variables - replace the example below with your own
     private ArrayList<Ciudadano> registros = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Registro
     /**
      * Constructor for objects of class Registro
      */
-    public Registro()
+    public Registros()
     {
         // initialise instance variables
         

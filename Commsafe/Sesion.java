@@ -8,14 +8,13 @@
 public class Sesion
 {
     // instance variables - replace the example below with your own
-    private Registro registro;
     private Ciudadano ciudadano;
 
     /**
      * Constructor for objects of class Sesion
      */
-    public Sesion()
+    public Sesion(Ciudadano ciudadano)
     {
-        // initialise instance variables     
+        this.ciudadano = ciudadano;   
     }
 }
