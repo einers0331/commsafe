@@ -1,2 +1,0 @@
-# commsafe
-security's app
