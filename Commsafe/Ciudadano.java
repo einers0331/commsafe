@@ -16,19 +16,21 @@ public class Ciudadano
     private int celular;
     private String direccion;
     private String foto;
+    private String ciudad;
     private ArrayList<String> perfil;
     private ArrayList<Post> posts;
 
     /**
      * Constructor for objects of class Ciudadano
      */
-    public Ciudadano(String nombre, String apellido, String contrasena, int cedula, int celular, String direccion)
+    public Ciudadano(String nombre, String apellido, String contrasena, int cedula, int celular, String direccion,String ciudad)
     {
         this.nombre = nombre;
         this.apellido = apellido;
         this.contrasena = contrasena;
         this.cedula = cedula;
         this.celular = celular;
+        this.ciudad = ciudad;
         this.direccion = direccion;
         posts = new ArrayList<>();
     }
@@ -41,11 +43,11 @@ public class Ciudadano
         return this.apellido;
     }
     
-    public int getcedula(){
+    public int getCedula(){
         return this.cedula;
     }
     
-    public int getcelular(){
+    public int getCelular(){
         return this.celular;
     }
     
@@ -53,9 +55,17 @@ public class Ciudadano
         return this.direccion;
     }
     
+     public String getContrasena(){
+        return this.contrasena;
+    }
+    
     //Establece una ruta con la imagen
     public void setFoto(String ft){
         foto = ft;
+    }
+    
+     public String getCiudad(){
+        return this.ciudad;
     }
     
     public void setPerfil(){
@@ -64,9 +74,13 @@ public class Ciudadano
         perfil.add(foto);
     }
     
-    public void addPost(String desc){
-        Post p = new Post(nombre,desc);
+    public void addPost(String desc,String ubicacion){
+        Post p = new Post(nombre,desc,ubicacion);
         posts.add(p);
+    }
+    public ArrayList<Post> getPost()
+    {
+    return posts;
     }
     
     public void showPerfil(){

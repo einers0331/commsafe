@@ -9,12 +9,24 @@ public class Sesion
 {
     // instance variables - replace the example below with your own
     private Ciudadano ciudadano;
+    private String ubicacionactual;
 
     /**
      * Constructor for objects of class Sesion
      */
-    public Sesion(Ciudadano ciudadano)
+    public Sesion(Ciudadano ciudadano,String ubicacionactual)
     {
-        this.ciudadano = ciudadano;   
+        this.ciudadano = ciudadano; 
+        this.ubicacionactual = ubicacionactual;
+    }
+    
+    public String getUbicacionActual()
+    {
+      return ubicacionactual;  
+    }
+    
+    public Ciudadano getCiudadano()
+    {
+        return ciudadano;
     }
 }

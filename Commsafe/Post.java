@@ -20,10 +20,11 @@ public class Post
     /**
      * Constructor for objects of class Post
      */
-    public Post(String nombre, String desc)
+    public Post(String nombre, String desc, String ubicacion)
     {
         nombreC = nombre;
         descripcion = desc;
+        this.ubicacion = ubicacion;
         datetime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
     }
     

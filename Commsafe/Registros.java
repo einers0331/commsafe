@@ -21,10 +21,16 @@ public class Registros
         
     }
 
-    public void registrarCiudadano(String nombre, String apellido, String contrasena, int cedula, int celular, String direccion)
+    public void registrarCiudadano(String nombre, String apellido, String contrasena, int cedula, int celular, String direccion,String ciudad)
     {
         // put your code here
-        Ciudadano ciudadano = new Ciudadano(nombre,apellido,contrasena,cedula,celular,direccion);
+        Ciudadano ciudadano = new Ciudadano(nombre,apellido,contrasena,cedula,celular,direccion,ciudad);
         registros.add(ciudadano);
     }
+    
+    public ArrayList<Ciudadano> getCuidadanos()
+    {
+    return registros;
+    }
+    
 }
