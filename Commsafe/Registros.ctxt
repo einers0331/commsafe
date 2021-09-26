@@ -7,4 +7,6 @@ comment2.params=nombre\ apellido\ contrasena\ cedula\ celular\ direccion\ ciudad
 comment2.target=void\ registrarCiudadano(java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ int,\ java.lang.String,\ java.lang.String)
 comment3.params=
 comment3.target=java.util.ArrayList\ getCuidadanos()
-numComments=4
+comment4.params=cedula\ contrasena
+comment4.target=Ciudadano\ validacion(int,\ java.lang.String)
+numComments=5

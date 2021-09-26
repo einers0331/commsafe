@@ -9,9 +9,20 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Iterator;
+import java.io.IOException;
 
 public class CommSafe
 {
+    public static void clrscr(){
+        //Clears Screen in Java
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ex) {}
+    }
+
     public static void main(String[] args) 
     {
         Fabrica objetos = new Fabrica();
@@ -21,92 +32,83 @@ public class CommSafe
 
         while(inicio)
         {
+            try{
             System.out.println("CommSafe");
             System.out.println("Bienvenido Ciudadano");
             System.out.println("1. Iniciar Sesion\n2. Olvide mi contraseña \n3. Registro \n4. Salir");
 
             Scanner myObj = new Scanner(System.in);
             int opcion = myObj.nextInt();
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            clrscr();
+
             switch (opcion) 
             {
                 case 1:
                     boolean digitandodatos = true;
                     while(digitandodatos)
                     {
-                        System.out.println("Cedula");
+                        System.out.println("Cedula \n ");
                         myObj = new Scanner(System.in);
                         int cedula = myObj.nextInt();
-                        System.out.println("\n Contraseña");
+                        System.out.println("Contraseña");
                         myObj = new Scanner(System.in);
                         String contrasena = myObj.nextLine();
-                        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                        clrscr();
                         System.out.println("1. Confirmar Sesion \n 2. Cancelar Sesion");
                         myObj = new Scanner(System.in);
                         int op = myObj.nextInt();
-                        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                        clrscr();
 
                         if(op == 1)
                         {
 
-                            ArrayList<Ciudadano> listaciudadanos = registros.getCuidadanos();
-                            boolean buscando = true;
-                            Iterator<Ciudadano> ite = listaciudadanos.iterator();
-                            while(buscando && ite.hasNext())
+                            Ciudadano c = registros.validacion(cedula,contrasena);
+
+                            if(c == null)
                             {
-                                Ciudadano c = ite.next();
-                                if((c.getCedula() == cedula) && (c.getContrasena().equals(contrasena)))
-                                {
-
-                                    digitandodatos = false;
-                                    buscando = false;
-                                    sesion = new Sesion(c,"cumbre");
-                                }
-
-                            }
-
-                            if(buscando)
-                            {
-                                System.out.println("Error en la autenticación");
-                                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                                System.out.println("Error en la autenticación \n");
                             }
 
                             else
 
                             {  
-                                while(sesion!= null){
-                                System.out.println("Menu Barra");
-                                System.out.println("1. Ver publicaciones \n2. Agregar Publicacion \n3. Perfil \n4. Configuracion");
-                                myObj = new Scanner(System.in);
-                                int op1 = myObj.nextInt();
-                                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                                digitandodatos = false;
+                                sesion = new Sesion(c,"cumbre"); //añade la ubicación actual
 
-                                switch(op1)
-                                {
-                                    case 1:
-                                        ArrayList<Ciudadano> ciudadanos = registros.getCuidadanos();
-                                        ArrayList<Post> Muro = new ArrayList<>();
-                                        for(Ciudadano iterar: ciudadanos )
-                                        {
-                                            ArrayList<Post> publicaciones = iterar.getPost();
-                                            for (Post iterar1: publicaciones)
+                                while(sesion!= null){
+
+                                    System.out.println("Menu Barra");
+                                    System.out.println("1. Ver publicaciones \n2. Agregar Publicacion \n3. Perfil \n4. Configuracion");
+                                    myObj = new Scanner(System.in);
+                                    int op1 = myObj.nextInt();
+                                    clrscr();
+
+                                    switch(op1)
+                                    {
+                                        case 1:
+                                            ArrayList<Ciudadano> ciudadanos = registros.getCuidadanos();
+                                            ArrayList<Post> Muro = new ArrayList<>();
+                                            for(Ciudadano iterar: ciudadanos )
                                             {
-                                                if(sesion.getUbicacionActual().equals(iterar1.getUbicacion()) )
+                                                ArrayList<Post> publicaciones = iterar.getPost();
+                                                for (Post iterar1: publicaciones)
                                                 {
-                                                    Muro.add(iterar1); 
+                                                    if(sesion.getUbicacionActual().equals(iterar1.getUbicacion()) )
+                                                    {
+                                                        Muro.add(iterar1); 
+                                                    }
                                                 }
                                             }
-                                        }
-                                        System.out.println("Muro");
-                                        for(Post iterar2: Muro)
-                                        {
-                                            iterar2.showPost();
-                                        }
+                                            System.out.println("Muro");
+                                            for(Post iterar2: Muro)
+                                            {
+                                                iterar2.showPost();
+                                            }
+
+                                    }
 
                                 }
-
                             }
-                        }
                         }
                         else 
                         {
@@ -142,11 +144,11 @@ public class CommSafe
                     myObj = new Scanner(System.in);
                     int celular = myObj.nextInt();
 
-                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                    clrscr();
                     System.out.println("1. Confirmar registro \n 2. Cancelar registro");
                     myObj = new Scanner(System.in);
                     int op = myObj.nextInt();
-                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                    clrscr();
                     if (op==1)
                     {
                         registros.registrarCiudadano(datos1.get(0), datos1.get(1), datos1.get(2), cedula, celular,datos1.get(3), datos1.get(4));
@@ -158,6 +160,10 @@ public class CommSafe
                     inicio = false;
                     break;
             }
+        }
+        catch(Exception e){
+            System.out.println("Ingrese una opción valida");
+        }
         }
     }
 }
